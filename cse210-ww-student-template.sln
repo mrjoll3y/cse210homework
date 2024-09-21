@@ -47,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prep3", "csharp-prep\Prep3\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prep4", "csharp-prep\Prep4\Prep4.csproj", "{AEC9BCFE-5FEA-49CE-9B55-6D524BC899FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{1D03A44B-9B8B-41AB-9F64-36F5178F1054}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{AEC9BCFE-5FEA-49CE-9B55-6D524BC899FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEC9BCFE-5FEA-49CE-9B55-6D524BC899FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEC9BCFE-5FEA-49CE-9B55-6D524BC899FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D03A44B-9B8B-41AB-9F64-36F5178F1054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D03A44B-9B8B-41AB-9F64-36F5178F1054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D03A44B-9B8B-41AB-9F64-36F5178F1054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D03A44B-9B8B-41AB-9F64-36F5178F1054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
