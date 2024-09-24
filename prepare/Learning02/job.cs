@@ -8,6 +8,7 @@ public class Job
     public string _yearStart;
     public string _yearLast;
 
+
     public void Display()
     {
         Console.WriteLine($"{_jobTitle} ({_company}) {_yearStart}-{_yearLast}");
