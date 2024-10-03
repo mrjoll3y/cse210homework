@@ -34,9 +34,5 @@ public class Fraction
         return (double)_top / (double)_bottom;
     }
 
-    public string PrintMath()
-    {
-        string math = $"{_top} / {_bottom} = {_top / _bottom}\n";
-        return math;
-    }
+
 }
