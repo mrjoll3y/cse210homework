@@ -1,5 +1,4 @@
-using system;
-
+using System;
 class Video
 {
     // Properties for video title, author, and length in seconds
