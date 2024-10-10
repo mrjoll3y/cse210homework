@@ -2,18 +2,21 @@ using System;
 
 public class Reference
 {
-    public string Book { get; set; }
-    public int Chapter { get; set; }
-    public int VerseStart { get; set; }
-    public int? VerseEnd { get; set; } 
-    public Reference(string book, int chapter, int verse)
+    public string Book { get; private set; }
+    public int Chapter { get; private set; }
+    public int VerseStart { get; private set; }
+    public int? VerseEnd { get; private set; }
+
+    
+    public Reference(string book, int chapter, int verseStart)
     {
         Book = book;
         Chapter = chapter;
-        VerseStart = verse;
+        VerseStart = verseStart;
         VerseEnd = null;
     }
 
+    
     public Reference(string book, int chapter, int verseStart, int verseEnd)
     {
         Book = book;
@@ -22,6 +25,7 @@ public class Reference
         VerseEnd = verseEnd;
     }
 
+    
     public override string ToString()
     {
         return VerseEnd.HasValue ? $"{Book} {Chapter}:{VerseStart}-{VerseEnd}" : $"{Book} {Chapter}:{VerseStart}";

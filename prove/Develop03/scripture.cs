@@ -1,41 +1,33 @@
+using System;
 public class Scripture
 {
     public Reference Ref { get; private set; }
-    public string Text { get; private set; }
-    private HashSet<int> hiddenWords;
+    private List<Word> Words;
 
+    
     public Scripture(Reference reference, string text)
     {
         Ref = reference;
-        Text = text;
-        hiddenWords = new HashSet<int>();
+        Words = text.Split(' ').Select(word => new Word(word)).ToList();
     }
 
-    public void HideRandomWord()
+        public void HideRandomWords(int numberOfWordsToHide = 3)
     {
-        string[] words = Text.Split(' ');
         Random random = new Random();
+        var wordsToHide = Words.Where(w => !w.IsHidden).OrderBy(_ => random.Next()).Take(numberOfWordsToHide).ToList();
 
-        // Keep trying to hide a word until a new one is found
-        int index;
-        do
+        foreach (var word in wordsToHide)
         {
-            index = random.Next(words.Length);
-        } while (hiddenWords.Contains(index));
-
-        hiddenWords.Add(index);
+            word.Hide();
+        }
     }
 
+    
     public string GetDisplayedText()
     {
-        string[] words = Text.Split(' ');
-        for (int i = 0; i < words.Length; i++)
-        {
-            if (hiddenWords.Contains(i))
-                words[i] = new string('_', words[i].Length); // Replace with underscores matching the word length
-        }
-        return string.Join(" ", words);
+        return string.Join(" ", Words.Select(word => word.ToString()));
     }
 
-    public bool AllWordsHidden() => hiddenWords.Count == Text.Split(' ').Length;
+    
+    public bool AllWordsHidden() => Words.All(word => word.IsHidden);
 }
