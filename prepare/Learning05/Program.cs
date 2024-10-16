@@ -2,15 +2,18 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+        static void Main(string[] args)
     {
-        // Testing MathAssignment
-        MathAssignment mathAssignment = new MathAssignment("Roberto Rodriguez", "Fractions", "7.3", "8-19");
-        Console.WriteLine(mathAssignment.GetSummary());
-        Console.WriteLine(mathAssignment.GetHomeworkList());
+        Assignment a1 = new Assignment("Callen Jolley", "Division");
+        Console.WriteLine(a1.GetSummary());
+    
+
+        MathAssignment a2 = new MathAssignment("Robert Fielding", "Fractions", "9.3", "2-12");
+        Console.WriteLine(a2.GetSummary());
+        Console.WriteLine(a2.GetHomeworkList());
         
-        WritingAssignment writingAssignment = new WritingAssignment("Mary Waters", "European History", "The Causes of World War II");
-        Console.WriteLine(writingAssignment.GetSummary());
-        Console.WriteLine(writingAssignment.GetWritingInformation());
+        WritingAssignment a3 = new WritingAssignment("Jocelyn Harker", "Egyprian Mummies", "The Process of Mummification");
+        Console.WriteLine(a3.GetSummary());
+        Console.WriteLine(a3.GetWritingInformation());
     }
 }
