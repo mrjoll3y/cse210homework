@@ -1,27 +1,37 @@
 using System;
 
-class Program
-{
-    static void Main(string[] args)
+    class Program
     {
-        Job job1 = new Job();
-        job1._jobTitle = "Team Lead";
-        job1._company = "Walmart";
-        job1._yearStart = "2023";
-        job1._yearLast = "2026";
+        static void Main(string[] args)
+        {
+            TaskScheduler scheduler = new TaskScheduler();
+            string filePath = "tasks.txt";
 
-        Job job2 = new Job();
-        job2._jobTitle = "Team Lead / Trainer";
-        job2._company = "Chick-fil-A";
-        job2._yearStart = "2020";
-        job2._yearLast = "2022";
+            // Add a task dynamically
+            Console.WriteLine("Enter task title:");
+            string title = Console.ReadLine();
+            Console.WriteLine("Enter due date (yyyy-mm-dd):");
+            DateTime dueDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter reminder message:");
+            string reminderMessage = Console.ReadLine();
 
-        Resume myResume = new Resume();
-        myResume._name = "Callen Jolley";
-        myResume._jobs.Add(job1);
-        myResume._jobs.Add(job2);
+            ReminderTask newTask = new ReminderTask
+            {
+                Title = title,
+                DueDate = dueDate,
+                ReminderMessage = reminderMessage
+            };
 
-        myResume.Display();
+            scheduler.AddTask(newTask);
+            scheduler.ShowTasks();
+
+            // Save tasks to file
+            scheduler.SaveTasksToFile(filePath);
+            Console.WriteLine("Tasks saved to file.");
+
+            // Load tasks from file and display them
+            scheduler.LoadTasksFromFile(filePath);
+            Console.WriteLine("Loaded tasks:");
+            scheduler.ShowTasks();
+        }
     }
-    
-}
