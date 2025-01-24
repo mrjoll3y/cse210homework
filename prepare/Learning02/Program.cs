@@ -4,7 +4,7 @@ using System;
     {
         static void Main(string[] args)
         {
-            TaskScheduler scheduler = new TaskScheduler();
+            taskscheduler scheduler = new taskscheduler();
             string filePath = "tasks.txt";
 
             // Add a task dynamically
@@ -15,7 +15,7 @@ using System;
             Console.WriteLine("Enter reminder message:");
             string reminderMessage = Console.ReadLine();
 
-            ReminderTask newTask = new ReminderTask
+            remindertask newTask = new remindertask
             {
                 Title = title,
                 DueDate = dueDate,
@@ -32,6 +32,4 @@ using System;
             // Load tasks from file and display them
             scheduler.LoadTasksFromFile(filePath);
             Console.WriteLine("Loaded tasks:");
-            scheduler.ShowTasks();
-        }
-    }
+            scheduler.ShowTasks()
