@@ -16,4 +16,4 @@ class Recipe
     {
         return $"Recipe: {Name}\nIngredients: {Ingredients}\nInstructions: {Instructions}\n";
     }
-}s
+}
