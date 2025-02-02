@@ -6,59 +6,52 @@ namespace TextAdventureGame
     {
         static void Main()
         {
-            Console.WriteLine("Welcome to the Expanded Text Adventure Game!");
+            Console.WriteLine("Welcome to the Enhanced Text Adventure Game!");
             Console.Write("Enter your character's name: ");
             string playerName = Console.ReadLine();
-
-            // Create a player object with the entered name
             Player player = new Player(playerName);
 
-            // Room instances with consequences based on choices
-            Room room1 = new Room("Room 1", "A simple, unremarkable room with a faint light in the corner.",
-                new string[] { "Go north", "Stay" },
-                new string[] { "You step into the unknown.", "You stay and do nothing." }, "Corridor 7");
+            Room room1 = new Room("Room 1", "A dark room with a heavy door.",
+                new string[] { "Try to force the door open", "Look for a key", "Leave" },
+                new string[] { "You fail, and injure yourself slightly.", "You find a key under a table.", "You leave the room." },
+                "Corridor 1", "Health Potion");
 
-            Room corridor7 = new Room("Corridor 7", "The corridor stretches ahead with strange whispers.",
-                new string[] { "Investigate whispers", "Continue ahead", "Turn back" },
-                new string[] { "You find a hidden trap!", "You press forward, the path ahead is uncertain.", "You decide to turn back." }, "Vault");
+            Room corridor1 = new Room("Corridor 1", "A narrow hallway with flickering lights.",
+                new string[] { "Move ahead", "Inspect the walls", "Turn back" },
+                new string[] { "You move ahead but feel uneasy.", "You find a hidden compartment with a mysterious object.", "You retreat to Room 1." },
+                "Room 2", "Strength Boost");
 
-            Room vault = new Room("Vault", "A vault with intricate mechanisms, but no visible way in.",
-                new string[] { "Inspect the vault", "Leave the vault" },
-                new string[] { "The vault opens, but danger awaits inside.", "You decide to leave the vault." }, "Passageway");
+            Room room2 = new Room("Room 2", "A room filled with puzzles.",
+                new string[] { "Solve the puzzle", "Inspect the surroundings" },
+                new string[] { "You solve the puzzle and feel smarter.", "You find a scroll with an ancient map." },
+                "Secret Passage", "Intelligence Scroll", false, false, true);
 
-            Room passageway = new Room("Passageway", "A narrow, dark passageway. It's almost suffocating.",
-                new string[] { "Push forward", "Retreat" },
-                new string[] { "You feel something watching you.", "You decide to retreat." }, "Void");
+            Room secretPassage = new Room("Secret Passage", "A narrow, winding tunnel.",
+                new string[] { "Proceed cautiously", "Retreat" },
+                new string[] { "You hear something behind you, but you keep going.", "You leave and return to Room 2." },
+                "Room 3", "Key to Treasure Chest", true);
 
-            Room voidRoom = new Room("Void", "A pitch-black void. You can’t see a thing.",
-                new string[] { "Search for light", "Wait in the dark" },
-                new string[] { "You find a small light source, but it’s only a false hope.", "The darkness consumes you." }, "Area 3");
+            Room room3 = new Room("Room 3", "A room with a treasure chest.",
+                new string[] { "Open the chest", "Look around the room" },
+                new string[] { "The chest is locked. You need a key.", "You find a hidden door leading out." },
+                "Treasure Room", "Health Potion", true);
 
-            Room area3 = new Room("Area 3", "A series of strange glowing symbols line the walls.",
-                new string[] { "Investigate the symbols", "Walk through" },
-                new string[] { "The symbols reveal a hidden exit.", "You feel disoriented and dizzy." }, "Room of Mirrors");
+            Room treasureRoom = new Room("Treasure Room", "A room filled with treasure chests and gold.",
+                new string[] { "Take the treasure", "Leave the treasure" },
+                new string[] { "You grab the treasure, but a trap is triggered!", "You decide not to take the treasure and leave." },
+                "Exit", "Golden Key", false);
 
-            Room roomOfMirrors = new Room("Room of Mirrors", "A room full of mirrors, but they don’t reflect you.",
-                new string[] { "Take the object from the mirror", "Leave" },
-                new string[] { "You gain strength from the object.", "You leave, unsure of your decision." }, "Chamber of Time");
+            Room exitRoom = new Room("Exit", "You see a bright light in the distance.",
+                new string[] { "Go towards the light", "Turn around" },
+                new string[] { "You escape and win!", "You turn around and fall into a pit!" },
+                "End", "None");
 
-            Room chamberOfTime = new Room("Chamber of Time", "A room that seems to distort time itself.",
-                new string[] { "Continue through", "Wait and see what happens" },
-                new string[] { "You step through a time portal, but it leads to a trap!", "You wait, and a mysterious figure appears." }, "Underpass");
-
-            Room underpass = new Room("Underpass", "A dimly lit underground tunnel. You feel claustrophobic.",
-                new string[] { "Push through the tunnel", "Retreat" },
-                new string[] { "You find a treasure chest, but it’s cursed!", "You retreat and find yourself lost." }, "Exit Room");
-
-            Room exitRoom = new Room("Exit Room", "The final room. You must decide your fate.",
-                new string[] { "Exit the game", "Stay and explore further" },
-                new string[] { "You exit, victorious and free!", "The world collapses, and you are trapped." }, "");
-
+            // Game loop
             bool gameRunning = true;
             while (gameRunning)
             {
                 Console.Clear();
-                Console.WriteLine($"Your Health: {player.Health}");
+                Console.WriteLine($"Your Health: {player.Health}, Strength: {player.Strength}, Intelligence: {player.Intelligence}");
                 Console.WriteLine($"Current Room: {player.CurrentRoom}");
 
                 switch (player.CurrentRoom)
@@ -68,109 +61,42 @@ namespace TextAdventureGame
                         room1.ShowChoices();
                         int choice = GetValidChoice(room1.Choices.Length);
                         room1.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Corridor 7" : "Room 1";
+                        player.CurrentRoom = room1.NextRoom;
                         break;
 
-                    case "Corridor 7":
-                        corridor7.EnterRoom();
-                        corridor7.ShowChoices();
-                        choice = GetValidChoice(corridor7.Choices.Length);
-                        corridor7.HandleChoice(choice, player);
-                        if (player.Health <= 0) { gameRunning = false; break; }
-                        player.CurrentRoom = (choice == 1) ? "Vault" : (choice == 2) ? "Passageway" : "Room 1";
+                    case "Corridor 1":
+                        corridor1.EnterRoom();
+                        corridor1.ShowChoices();
+                        choice = GetValidChoice(corridor1.Choices.Length);
+                        corridor1.HandleChoice(choice, player);
+                        player.CurrentRoom = corridor1.NextRoom;
                         break;
 
-                    case "Vault":
-                        vault.EnterRoom();
-                        vault.ShowChoices();
-                        choice = GetValidChoice(vault.Choices.Length);
-                        vault.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Passageway" : "Room 1";
+                    case "Room 2":
+                        room2.EnterRoom();
+                        room2.ShowChoices();
+                        choice = GetValidChoice(room2.Choices.Length);
+                        room2.HandleChoice(choice, player);
+                        player.CurrentRoom = room2.NextRoom;
                         break;
 
-                    case "Passageway":
-                        passageway.EnterRoom();
-                        passageway.ShowChoices();
-                        choice = GetValidChoice(passageway.Choices.Length);
-                        passageway.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Void" : "Vault";
+                    case "Secret Passage":
+                        secretPassage.EnterRoom();
+                        secretPassage.ShowChoices();
+                        choice = GetValidChoice(secretPassage.Choices.Length);
+                        secretPassage.HandleChoice(choice, player);
+                        player.CurrentRoom = secretPassage.NextRoom;
                         break;
 
-                    case "Void":
-                        voidRoom.EnterRoom();
-                        voidRoom.ShowChoices();
-                        choice = GetValidChoice(voidRoom.Choices.Length);
-                        voidRoom.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Area 3" : "Room 1";
+                    case "Room 3":
+                        room3.EnterRoom();
+                        room3.ShowChoices();
+                        choice = GetValidChoice(room3.Choices.Length);
+                        room3.HandleChoice(choice, player);
+                        player.CurrentRoom = room3.NextRoom;
                         break;
 
-                    case "Area 3":
-                        area3.EnterRoom();
-                        area3.ShowChoices();
-                        choice = GetValidChoice(area3.Choices.Length);
-                        area3.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Room of Mirrors" : "Void";
-                        break;
-
-                    case "Room of Mirrors":
-                        roomOfMirrors.EnterRoom();
-                        roomOfMirrors.ShowChoices();
-                        choice = GetValidChoice(roomOfMirrors.Choices.Length);
-                        roomOfMirrors.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Chamber of Time" : "Area 3";
-                        break;
-
-                    case "Chamber of Time":
-                        chamberOfTime.EnterRoom();
-                        chamberOfTime.ShowChoices();
-                        choice = GetValidChoice(chamberOfTime.Choices.Length);
-                        chamberOfTime.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Underpass" : "Room of Mirrors";
-                        break;
-
-                    case "Underpass":
-                        underpass.EnterRoom();
-                        underpass.ShowChoices();
-                        choice = GetValidChoice(underpass.Choices.Length);
-                        underpass.HandleChoice(choice, player);
-                        player.CurrentRoom = (choice == 1) ? "Exit Room" : "Chamber of Time";
-                        break;
-
-                    case "Exit Room":
-                        exitRoom.EnterRoom();
-                        exitRoom.ShowChoices();
-                        choice = GetValidChoice(exitRoom.Choices.Length);
-                        exitRoom.HandleChoice(choice, player);
-                        if (choice == 1)
-                        {
-                            Console.WriteLine("Congratulations, you finished the game!");
-                            gameRunning = false;
-                        }
-                        break;
-                }
-            }
-
-            Console.WriteLine("Game Over. Thanks for playing!");
-        }
-
-        // Method to ensure the user inputs a valid choice
-        static int GetValidChoice(int numChoices)
-        {
-            int choice = 0;
-            while (choice < 1 || choice > numChoices)
-            {
-                Console.Write("Please choose a valid option: ");
-                string input = Console.ReadLine();
-                if (int.TryParse(input, out choice) && choice >= 1 && choice <= numChoices)
-                {
-                    return choice;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice. Try again.");
-                }
-            }
-            return choice;
-        }
-    }
-}
+                    case "Treasure Room":
+                        treasureRoom.EnterRoom();
+                        treasureRoom.ShowChoices();
+                        choice = GetValid

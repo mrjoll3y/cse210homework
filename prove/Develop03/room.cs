@@ -7,23 +7,29 @@ namespace TextAdventureGame
         public string[] Choices { get; set; }
         public string[] Consequences { get; set; }
         public string NextRoom { get; set; }
+        public string ItemFound { get; set; }
+        public bool RequiresItem { get; set; }
+        public bool RequiresStrength { get; set; }
+        public bool RequiresIntelligence { get; set; }
 
-        public Room(string name, string description, string[] choices, string[] consequences, string nextRoom)
+        public Room(string name, string description, string[] choices, string[] consequences, string nextRoom, string itemFound = "", bool requiresItem = false, bool requiresStrength = false, bool requiresIntelligence = false)
         {
             Name = name;
             Description = description;
             Choices = choices;
             Consequences = consequences;
             NextRoom = nextRoom;
+            ItemFound = itemFound;
+            RequiresItem = requiresItem;
+            RequiresStrength = requiresStrength;
+            RequiresIntelligence = requiresIntelligence;
         }
 
-        // Displays the room's description
         public void EnterRoom()
         {
             Console.WriteLine($"{Name}: {Description}");
         }
 
-        // Displays the choices for the player
         public void ShowChoices()
         {
             Console.WriteLine("What would you like to do?");
@@ -33,26 +39,33 @@ namespace TextAdventureGame
             }
         }
 
-        // Handles the consequences of the player's choice
         public void HandleChoice(int choice, Player player)
         {
-            // Print the consequence of the player's choice
             Console.WriteLine(Consequences[choice - 1]);
 
-            // Apply consequences, like changing the player's health
-            if (choice == 1)
+            // Consequences for stats
+            if (RequiresStrength && player.Strength < 15)
             {
-                player.Health -= 10; // Example: Losing health on the first choice
-            }
-            else if (choice == 2)
-            {
-                player.Health += 5; // Example: Gaining health on the second choice
+                player.Health -= 10;
+                Console.WriteLine("Your strength wasn't enough. You lose 10 health.");
             }
 
-            // If health is 0 or below, game ends
-            if (player.Health <= 0)
+            if (RequiresIntelligence && player.Intelligence < 12)
             {
-                Console.WriteLine("You have died. Game Over.");
+                player.Health -= 5;
+                Console.WriteLine("You couldn't solve the puzzle. You lose 5 health.");
+            }
+
+            if (RequiresItem && !player.Inventory.Contains(ItemFound))
+            {
+                player.Health -= 15;
+                Console.WriteLine("You need the right item to proceed. You lose 15 health.");
+            }
+
+            if (!string.IsNullOrEmpty(ItemFound))
+            {
+                Console.WriteLine($"You found a {ItemFound}!");
+                player.AddItem(ItemFound);
             }
         }
     }
