@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace TextAdventureGame
@@ -18,35 +19,12 @@ namespace TextAdventureGame
             Strength = 10;
             Intelligence = 10;
             Inventory = new List<string>();
-            CurrentRoom = "Room 1";
+            CurrentRoom = "Room 1"; // Starting point
         }
 
         public void AddItem(string item)
         {
             Inventory.Add(item);
-            Console.WriteLine($"You have picked up: {item}");
-        }
-
-        public void UseItem(string item)
-        {
-            if (Inventory.Contains(item))
-            {
-                if (item == "Health Potion")
-                {
-                    Health += 20;
-                    Console.WriteLine("You used a Health Potion. Health +20.");
-                    Inventory.Remove(item);
-                }
-                else
-                {
-                    Console.WriteLine($"You used the {item}");
-                    Inventory.Remove(item);
-                }
-            }
-            else
-            {
-                Console.WriteLine("You do not have that item.");
-            }
         }
     }
 }
