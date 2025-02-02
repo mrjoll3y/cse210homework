@@ -6,7 +6,6 @@ namespace TextAdventureGame
     {
         static void Main()
         {
-            // Introduction to the game and player input
             Console.WriteLine("Welcome to the Expanded Text Adventure Game!");
             Console.Write("Enter your character's name: ");
             string playerName = Console.ReadLine();
@@ -14,7 +13,7 @@ namespace TextAdventureGame
             // Create a player object with the entered name
             Player player = new Player(playerName);
 
-            // Create instances of rooms in the game
+            // Room instances with consequences based on choices
             Room room1 = new Room("Room 1", "A simple, unremarkable room with a faint light in the corner.",
                 new string[] { "Go north", "Stay" },
                 new string[] { "You step into the unknown.", "You stay and do nothing." }, "Corridor 7");
@@ -53,22 +52,21 @@ namespace TextAdventureGame
 
             Room exitRoom = new Room("Exit Room", "The final room. You must decide your fate.",
                 new string[] { "Exit the game", "Stay and explore further" },
-                new string[] { "You exit, victorious and free!", "You stay, but the world collapses." }, "");
+                new string[] { "You exit, victorious and free!", "The world collapses, and you are trapped." }, "");
 
-            // Game loop - where the player moves through rooms
             bool gameRunning = true;
             while (gameRunning)
             {
                 Console.Clear();
-                Console.WriteLine("Your Health: " + player.Health);
-                Console.WriteLine("Current Room: " + player.CurrentRoom);
+                Console.WriteLine($"Your Health: {player.Health}");
+                Console.WriteLine($"Current Room: {player.CurrentRoom}");
 
                 switch (player.CurrentRoom)
                 {
                     case "Room 1":
                         room1.EnterRoom();
                         room1.ShowChoices();
-                        int choice = int.Parse(Console.ReadLine());
+                        int choice = GetValidChoice(room1.Choices.Length);
                         room1.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Corridor 7" : "Room 1";
                         break;
@@ -76,7 +74,7 @@ namespace TextAdventureGame
                     case "Corridor 7":
                         corridor7.EnterRoom();
                         corridor7.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(corridor7.Choices.Length);
                         corridor7.HandleChoice(choice, player);
                         if (player.Health <= 0) { gameRunning = false; break; }
                         player.CurrentRoom = (choice == 1) ? "Vault" : (choice == 2) ? "Passageway" : "Room 1";
@@ -85,7 +83,7 @@ namespace TextAdventureGame
                     case "Vault":
                         vault.EnterRoom();
                         vault.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(vault.Choices.Length);
                         vault.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Passageway" : "Room 1";
                         break;
@@ -93,7 +91,7 @@ namespace TextAdventureGame
                     case "Passageway":
                         passageway.EnterRoom();
                         passageway.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(passageway.Choices.Length);
                         passageway.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Void" : "Vault";
                         break;
@@ -101,16 +99,15 @@ namespace TextAdventureGame
                     case "Void":
                         voidRoom.EnterRoom();
                         voidRoom.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(voidRoom.Choices.Length);
                         voidRoom.HandleChoice(choice, player);
-                        if (player.Health <= 0) { gameRunning = false; break; }
-                        player.CurrentRoom = (choice == 1) ? "Area 3" : "Passageway";
+                        player.CurrentRoom = (choice == 1) ? "Area 3" : "Room 1";
                         break;
 
                     case "Area 3":
                         area3.EnterRoom();
                         area3.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(area3.Choices.Length);
                         area3.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Room of Mirrors" : "Void";
                         break;
@@ -118,7 +115,7 @@ namespace TextAdventureGame
                     case "Room of Mirrors":
                         roomOfMirrors.EnterRoom();
                         roomOfMirrors.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(roomOfMirrors.Choices.Length);
                         roomOfMirrors.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Chamber of Time" : "Area 3";
                         break;
@@ -126,7 +123,7 @@ namespace TextAdventureGame
                     case "Chamber of Time":
                         chamberOfTime.EnterRoom();
                         chamberOfTime.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(chamberOfTime.Choices.Length);
                         chamberOfTime.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Underpass" : "Room of Mirrors";
                         break;
@@ -134,7 +131,7 @@ namespace TextAdventureGame
                     case "Underpass":
                         underpass.EnterRoom();
                         underpass.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(underpass.Choices.Length);
                         underpass.HandleChoice(choice, player);
                         player.CurrentRoom = (choice == 1) ? "Exit Room" : "Chamber of Time";
                         break;
@@ -142,17 +139,38 @@ namespace TextAdventureGame
                     case "Exit Room":
                         exitRoom.EnterRoom();
                         exitRoom.ShowChoices();
-                        choice = int.Parse(Console.ReadLine());
+                        choice = GetValidChoice(exitRoom.Choices.Length);
                         exitRoom.HandleChoice(choice, player);
                         if (choice == 1)
                         {
-                            Console.WriteLine("You have completed the adventure! Congratulations!");
+                            Console.WriteLine("Congratulations, you finished the game!");
                             gameRunning = false;
                         }
-                        else { Console.WriteLine("The world collapses, and you are trapped."); gameRunning = false; }
                         break;
                 }
             }
+
+            Console.WriteLine("Game Over. Thanks for playing!");
+        }
+
+        // Method to ensure the user inputs a valid choice
+        static int GetValidChoice(int numChoices)
+        {
+            int choice = 0;
+            while (choice < 1 || choice > numChoices)
+            {
+                Console.Write("Please choose a valid option: ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out choice) && choice >= 1 && choice <= numChoices)
+                {
+                    return choice;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. Try again.");
+                }
+            }
+            return choice;
         }
     }
 }
