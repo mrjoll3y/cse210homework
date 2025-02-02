@@ -1,21 +1,14 @@
-using System;
-
-public class Player
+namespace TextAdventureGame
 {
-    public string Name;
-    public int Health;
-    public string CurrentRoom;
-
-    public Player(string name)
+    public class Player
     {
-        Name = name;
-        Health = 100;  // Starting health
-        CurrentRoom = "Starting Room"; // Default room
-    }
+        public string Name { get; set; }
+        public int Health { get; set; } = 100;  // Default health
+        public string CurrentRoom { get; set; } = "Room 1";  // Starting room
 
-    public void TakeDamage(int damage)
-    {
-        Health -= damage;
-        if (Health < 0) Health = 0;
+        public Player(string name)
+        {
+            Name = name;
+        }
     }
 }
