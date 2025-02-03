@@ -1,5 +1,6 @@
 #Overview
-I wanted to dive deeper into C# and try building a simple text-based adventure game. The main goal was to learn how to use object-oriented programming (OOP) concepts like classes and methods in C#, while also getting a better feel for the language itself.
+
+I wanted to explore C # more and build a simple text-based adventure game. My main goal was to learn how to use object-oriented programming (OOP) concepts like classes and methods while getting a better feel for the language itself.
 
 The game takes you through many choices, where you can fight battles, explore, and make decisions that change the story. Along the way, I’ve learned a lot about handling user input, using random numbers for game mechanics, and saving data to a file to track the player's stats.
 
