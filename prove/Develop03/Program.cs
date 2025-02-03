@@ -126,4 +126,4 @@ namespace TextAdventureGame
                         room2.EnterRoom();
                         room2.ShowChoices();
                         choice = GetValidChoice(room2.Choices.Length);
-                        room2.Handle;}}}}}
+                        room2.Handle
