@@ -1,14 +1,24 @@
-using System;
-
 namespace CSharpDemo
 {
-    public class Enemy : Character
+    public class Enemy
     {
-        public Enemy(string name, int health) : base(name, health) { }
+        public string Name { get; set; }
+        public int Health { get; set; }
 
-        public override void Attack()
+        public Enemy(string name, int health)
         {
-            Console.WriteLine($"{Name} lunges at you!");
+            Name = name;
+            Health = health;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+        }
+
+        public bool IsAlive()
+        {
+            return Health > 0;
         }
     }
 }
