@@ -1,14 +1,14 @@
-using System;
-
 namespace CSharpDemo
 {
-    public class Player : Character
+    public class Player
     {
-        public Player(string name, int health) : base(name, health) { }
+        public string Name { get; set; }
+        public int Health { get; set; }
 
-        public override void Attack()
+        public Player(string name, int health)
         {
-            Console.WriteLine($"{Name} swings their sword!");
+            Name = name;
+            Health = health;
         }
     }
 }
