@@ -1,4 +1,4 @@
-#Overview
+# Overview
 
 I wanted to explore C # more and build a simple text-based adventure game. My main goal was to learn how to use object-oriented programming (OOP) concepts like classes and methods while getting a better feel for the language itself.
 
@@ -6,7 +6,7 @@ The game takes you through many choices, where you can fight battles, explore, a
 
 Overall, this project has been a great way to practice C# , build something interactive, and learn how to apply it in a real-world scenario.
 
-#Software Demo Video
+**#Software Demo Video**
 
 #Development Environment
 To develop this, I used Visual Studio Code with the C# extension to write and run the code., and .NET Core to compile and run the program. The game was written entirely in C#, and I relied on a few libraries to help with the basics, like getting user input and generating random numbers.
