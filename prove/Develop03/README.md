@@ -1,6 +1,6 @@
 # Overview
 
-I’m a college student and wanted to get a better understanding of C# by building a text-based adventure game. The goal was to learn how to apply object-oriented programming concepts like classes, methods, and inheritance while also getting comfortable with C# syntax.
+I wanted to get a better understanding of C# by building a text-based adventure game. The goal was to learn how to apply object-oriented programming concepts like classes, methods, and inheritance while also getting comfortable with C# syntax.
 
 The game takes the player through a series of choices, where they can battle, explore, and make decisions that affect the outcome of the story. Throughout this project, I’ve learned how to handle user input, use random numbers for game mechanics, and save data to a file for tracking player stats.
 
