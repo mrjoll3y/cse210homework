@@ -1,32 +1,28 @@
-# Overview
+#Overview
+I wanted to dive deeper into C# and try building a simple text-based adventure game. The main goal was to learn how to use object-oriented programming (OOP) concepts like classes and methods in C#, while also getting a better feel for the language itself.
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
+The game takes you through many choices, where you can fight battles, explore, and make decisions that change the story. Along the way, I’ve learned a lot about handling user input, using random numbers for game mechanics, and saving data to a file to track the player's stats.
 
-{Provide a description of the software that you wrote to demonstrate the C# language.}
+Overall, this project has been a great way to practice C# ,build something interactive, aand learnhow to apply it in a real-world scenario.
 
-{Describe your purpose for writing this software.}
+#Software Demo Video
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
+#Development Environment
+To develop this, I used Visual Studio Code with the C# extension to write and run the code., and .NET Core to compile and run the program. The game was written entirely in C#, and I relied on a few libraries to help with the basics, like getting user input and generating random numbers.
 
-[Software Demo Video](http://youtube.link.goes.here)
+The main libraries I used include:
 
-# Development Environment
+System: For basic functionality like input and output.
+System.IO: For saving stats to a text file.
+#Useful Websites
 
-{Describe the tools that you used to develop the software}
+C# Documentation
+C# Programming Guide
+Stack Overflow (Always helpful when I got stuck on something!)
 
-{Describe the programming language that you used and any libraries.}
+#Future Work
+There are a few things I want to improve and add to the game in the future:
 
-# Useful Websites
-
-{Make a list of websites that you found helpful in this project}
-
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
-
-# Future Work
-
-{Make a list of things that you need to fix, improve, and add in the future.}
-
-- Item 1
-- Item 2
-- Item 3
+1. More enemies: I want to add different kinds of enemies, and use inheritance to make them more varied.
+2. Expanded story: Adding more paths and events to make the game even more engaging.
+3. Inventory system: Let the player collect items and use them in the game.
