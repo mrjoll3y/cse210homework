@@ -6,7 +6,7 @@ The game takes the player through a series of choices, where they can battle, ex
 
 Overall, this project has helped me get better at using C# and apply it to something interactive.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/w3FlJSjxgw0)
 
 # Development Environment
 
