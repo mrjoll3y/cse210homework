@@ -3,7 +3,7 @@ I wanted to dive deeper into C# and try building a simple text-based adventure g
 
 The game takes you through many choices, where you can fight battles, explore, and make decisions that change the story. Along the way, I’ve learned a lot about handling user input, using random numbers for game mechanics, and saving data to a file to track the player's stats.
 
-Overall, this project has been a great way to practice C# ,build something interactive, aand learnhow to apply it in a real-world scenario.
+Overall, this project has been a great way to practice C# , build something interactive, and learn how to apply it in a real-world scenario.
 
 #Software Demo Video
 
@@ -18,7 +18,7 @@ System.IO: For saving stats to a text file.
 
 C# Documentation
 C# Programming Guide
-Stack Overflow (Always helpful when I got stuck on something!)
+Stack Overflow (Always helpful when I get stuck on something!)
 
 #Future Work
 There are a few things I want to improve and add to the game in the future:
