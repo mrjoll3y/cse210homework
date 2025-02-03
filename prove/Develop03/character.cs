@@ -2,6 +2,7 @@ using System;
 
 namespace CSharpDemo
 {
+    // Abstract class for all characters
     public abstract class Character
     {
         public string Name { get; set; }
