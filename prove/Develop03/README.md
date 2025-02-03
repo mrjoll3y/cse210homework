@@ -1,29 +1,35 @@
 # Overview
 
-I wanted to explore C # more and build a simple text-based adventure game. My main goal was to learn how to use object-oriented programming (OOP) concepts like classes and methods while getting a better feel for the language itself.
+I’m a college student and wanted to get a better understanding of C# by building a text-based adventure game. The goal was to learn how to apply object-oriented programming concepts like classes, methods, and inheritance while also getting comfortable with C# syntax.
 
-The game takes you through many choices, where you can fight battles, explore, and make decisions that change the story. Along the way, I’ve learned a lot about handling user input, using random numbers for game mechanics, and saving data to a file to track the player's stats.
+The game takes the player through a series of choices, where they can battle, explore, and make decisions that affect the outcome of the story. Throughout this project, I’ve learned how to handle user input, use random numbers for game mechanics, and save data to a file for tracking player stats.
 
-Overall, this project has been a great way to practice C# , build something interactive, and learn how to apply it in a real-world scenario.
+Overall, this project has helped me get better at using C# and apply it to something interactive.
 
-**#Software Demo Video**
+[Software Demo Video](http://youtube.link.goes.here)
 
-#Development Environment
-To develop this, I used Visual Studio Code with the C# extension to write and run the code., and .NET Core to compile and run the program. The game was written entirely in C#, and I relied on a few libraries to help with the basics, like getting user input and generating random numbers.
+# Development Environment
 
-The main libraries I used include:
+I used Visual Studio Code with the C# extension to write and run the program. .NET Core was used for compiling the code. The game was written in C#, using basic libraries for input/output, random number generation, and file handling.
 
-System: For basic functionality like input and output.
-System.IO: For saving stats to a text file.
-#Useful Websites
+The libraries used are:
+- System: For basic functions like input and output.
+- System.IO: To save player stats to a text file.
 
-C# Documentation
-C# Programming Guide
-Stack Overflow (Always helpful when I get stuck on something!)
+# Useful Websites
 
-#Future Work
-There are a few things I want to improve and add to the game in the future:
+Here are some websites that helped me during the project:
 
-1. More enemies: I want to add different kinds of enemies, and use inheritance to make them more varied.
-2. Expanded story: Adding more paths and events to make the game even more engaging.
-3. Inventory system: Let the player collect items and use them in the game.
+- [C# Documentation](https://docs.microsoft.com/en-us/dotnet/csharp/)
+- [C# Programming Guide](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/)
+- [Stack Overflow](https://stackoverflow.com/) (Great for getting answers to specific coding issues)
+
+# Future Work
+
+There are a few things I want to add or improve in the future:
+
+- More enemies: Add different enemies and use inheritance to create different types.
+- Expanded story: Add more branching paths and events to make it more interactive.
+- Inventory system: Let the player pick up and use items in the game.
+- Combat system improvements: Add special attacks and more options for combat.
+- Save/load system: Allow players to save and load their progress.
