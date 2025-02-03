@@ -1,29 +1,14 @@
-// Room.cs & Player.cs
 using System;
-using System.Collections.Generic;
 
-namespace AdventureGame
+namespace CSharpDemo
 {
-    class Player
+    public class Player : Character
     {
-        public string Name { get; set; }
-        public Player(string name)
-        {
-            Name = name;
-        }
-    }
+        public Player(string name, int health) : base(name, health) { }
 
-    class Room
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Dictionary<string, string> Choices { get; set; }
-
-        public Room(string name, string description, Dictionary<string, string> choices)
+        public override void Attack()
         {
-            Name = name;
-            Description = description;
-            Choices = choices;
+            Console.WriteLine($"{Name} swings their sword!");
         }
     }
 }
